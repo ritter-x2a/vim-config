@@ -1,0 +1,19 @@
+# symlink
+init.vim
+
+# Optional extra configuration
+bundle/vim-config-extra
+
+# Compiled python source
+*.pyc
+
+# spell data
+spell/*.spl
+spell/*.sug
+
+# installed plugins
+plugged/*
+
+# Other stuff
+yankring_history_v2.txt
+.netrwhist
