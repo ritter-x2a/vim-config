@@ -34,7 +34,9 @@ Plug 'https://github.com/bfredl/nvim-miniyank.git', has('nvim') ? {} : { 'on': [
 Plug 'https://github.com/eugen0329/vim-esearch.git'
 Plug 'https://github.com/easymotion/vim-easymotion.git'
 
-Plug 'zxqfl/tabnine-vim'
+" autocompletions
+Plug 'zxqfl/tabnine-vim', $SLIMVIM ? {'on': []} : {}
+Plug 'https://github.com/ajh17/VimCompletesMe.git', $SLIMVIM ? {} : {'on': []}
 
 Plug 'https://github.com/rhysd/vim-grammarous.git'
 
@@ -51,12 +53,12 @@ Plug 'https://github.com/LaTeX-Box-Team/LaTeX-Box.git', { 'for': 'tex' }
 Plug 'https://github.com/vim-scripts/taglist.vim.git', { 'for': ['c', 'cpp'] }
 " Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'for' : ['cpp', 'rust']}
 Plug 'https://github.com/derekwyatt/vim-scala', { 'for' : 'scala'}
+Plug 'https://github.com/JuliaEditorSupport/julia-vim', { 'for' : 'julia'}
 
 " my plugins
 Plug '~/.config/nvim/my_plugins/hexmode'
 Plug '~/.config/nvim/my_plugins/vsearch'
 
-" Plug 'https://github.com/ajh17/VimCompletesMe.git'
 Plug 'https://github.com/equalsraf/neovim-gui-shim.git'
 
 call plug#end()
@@ -790,10 +792,10 @@ vnoremap <leader>mc :MultipleCursorsFind "
 "------------------------------------------------------------------------------
 " UltiSnips {{{
 "------------------------------------------------------------------------------
-let g:UltiSnipsExpandTrigger="^"
-let g:UltiSnipsListSnippets="<c-^>"
-let g:UltiSnipsJumpForwardTrigger="^"
-let g:UltiSnipsJumpBackwardTrigger="<s-^>"
+" let g:UltiSnipsExpandTrigger="^"
+" let g:UltiSnipsListSnippets="<c-^>"
+" let g:UltiSnipsJumpForwardTrigger="^"
+" let g:UltiSnipsJumpBackwardTrigger="<s-^>"
 " }}}
 "------------------------------------------------------------------------------
 "
