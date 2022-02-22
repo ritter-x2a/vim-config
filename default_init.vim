@@ -5,6 +5,9 @@
 "      CREATED:  05.05.2016
 "==============================================================================
 "
+let g:python_host_prog = '/bin/python'
+let g:python3_host_prog = '/bin/python3'
+"
 "==============================================================================
 " Plugins {{{
 "==============================================================================
@@ -25,18 +28,20 @@ Plug 'https://github.com/airblade/vim-gitgutter.git'
 
 " editing features
 Plug 'https://github.com/Raimondi/delimitMate.git'
-Plug 'https://github.com/sjl/gundo.vim.git'
+" Plug 'https://github.com/sjl/gundo.vim.git'
 Plug 'https://github.com/tomtom/tcomment_vim.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 Plug 'https://github.com/SirVer/ultisnips.git'
 Plug 'https://github.com/honza/vim-snippets.git'
-Plug 'https://github.com/bfredl/nvim-miniyank.git', has('nvim') ? {} : { 'on': [] }
+" Plug 'https://github.com/bfredl/nvim-miniyank.git', has('nvim') ? {} : { 'on': [] }
 Plug 'https://github.com/eugen0329/vim-esearch.git'
 Plug 'https://github.com/easymotion/vim-easymotion.git'
 
 " autocompletions
 Plug 'zxqfl/tabnine-vim', $SLIMVIM ? {'on': []} : {}
-Plug 'https://github.com/ajh17/VimCompletesMe.git', $SLIMVIM ? {} : {'on': []}
+" Plug 'https://github.com/ajh17/VimCompletesMe.git', $SLIMVIM ? {} : {'on': []}
+
+" Plug 'https://github.com/ajh17/VimCompletesMe.git'
 
 Plug 'https://github.com/rhysd/vim-grammarous.git'
 
@@ -318,10 +323,10 @@ highlight TermCursor ctermfg=red guifg=red
 " Terminal settings
 tnoremap <ESC><ESC> <C-\><C-n>
 
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
 
 nnoremap <silent><Leader>i :call SmartSplit()<CR>:terminal<CR>
 
@@ -344,6 +349,8 @@ endif
 "  general interaction mappings {{{
 "------------------------------------------------------------------------------
 "
+" imap jk <Esc>
+" imap kj <Esc>
 "
 noremap <ScrollWheelUp> 3<C-Y>
 noremap <ScrollWheelDown> 3<C-E>
@@ -397,16 +404,21 @@ function! SmoothScroll(up)
     endwhile
 endfunction
 
-nnoremap <silent> <S-J> :call SmoothScroll(0)<CR>M
-nnoremap <silent> <S-K> :call SmoothScroll(1)<CR>M
+" nnoremap <silent> <S-J> :call SmoothScroll(0)<CR>M
+" nnoremap <silent> <S-K> :call SmoothScroll(1)<CR>M
+nnoremap <silent> <A-j> :call SmoothScroll(0)<CR>M
+nnoremap <silent> <A-k> :call SmoothScroll(1)<CR>M
+
+nnoremap <S-J> <Esc>
+nnoremap <S-K> <Esc>
 
 nnoremap <leader><S-J> J
 "
-"    C-hjkl - normal mode: Move to other window.
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"    A-hjkl - normal mode: Move to other window.
+nnoremap <A-h> <C-w>h
+nnoremap <A-n> <C-w>j
+nnoremap <A-u> <C-w>k
+nnoremap <A-l> <C-w>l
 
 "
 "    C-arrows - normal mode: resize windows
@@ -442,6 +454,13 @@ nnoremap <leader>p "+p
 nnoremap <leader>y "+yy
 vnoremap <leader>y "+y
 vnoremap <leader>d "+x
+
+
+" noone needs the default ; meaning
+nnoremap ; :
+
+"   A-r - normal mode: redo
+nnoremap <A-r> <C-r>
 "
 " }}}
 "------------------------------------------------------------------------------
@@ -461,32 +480,36 @@ vnoremap <leader>s :s///g<left><left>
 "   Leader-r reformat
 nnoremap <leader>r gwgw
 nnoremap <leader>R gqip
+
+nnoremap <leader>u `]gU`[
+
+
 "
 " eliminate german layout
-" map Ö [
-" map! Ö [
-" omap Ö i[
-"
-" map ö {
-" map! ö {
-" omap ö i{
-"
-" map Ä ]
-" map! Ä ]
-" omap Ä a]
-"
-" map ä }
-" map! ä }
-" omap ä a}
-"
-" map ü \
-" map! ü \
-" omap ü \
-"
-" map Ü ~
-" map! Ü ~
-" omap Ü ~
-"
+map Ö [
+map! Ö [
+omap Ö i[
+
+map ö {
+map! ö {
+omap ö i{
+
+map Ä ]
+map! Ä ]
+omap Ä a]
+
+map ä }
+map! ä }
+omap ä a}
+
+map ü \
+map! ü \
+omap ü \
+
+map Ü ~
+map! Ü ~
+omap Ü ~
+
 " map <Leader>ö <C-]>
 " map <Leader>ä <C-t>
 "
@@ -616,14 +639,12 @@ nnoremap <silent> <leader>vfo :call append(line(".")-1, get(split(&foldmarker, "
 " [LEADER-V]  <leader>vfc - append closing foldmarkers
 nnoremap <silent> <leader>vfc :call append(line("."), get(split(&foldmarker, ","), 1))<CR>
 "
-"    C-a - Visual increment
-vnoremap <C-a> :s/\%V[-+]\?\d\+/\=(submatch(0)+1)/g<CR>:set nohlsearch<CR>gv
+"    A-a - Visual increment
+vnoremap <A-a> :s/\%V[-+]\?\d\+/\=(submatch(0)+1)/g<CR>:set nohlsearch<CR>gv
 "
-"    C-x - Visual decrement
-vnoremap <C-x> :s/\%V[-+]\?\d\+/\=(submatch(0)-1)/g<CR>:set nohlsearch<CR>gv
+"    A-x - Visual decrement
+vnoremap <A-x> :s/\%V[-+]\?\d\+/\=(submatch(0)-1)/g<CR>:set nohlsearch<CR>gv
 
-nnoremap <C-q> qq^
-nnoremap <S-q> @q
 " }}}
 "------------------------------------------------------------------------------
 "
@@ -679,8 +700,8 @@ let g:ctrlp_arg_map = 1
 "------------------------------------------------------------------------------
 " Gundo {{{
 "------------------------------------------------------------------------------
-nnoremap <C-u> :GundoToggle<CR>
-let g:gundo_close_on_revert = 1
+" nnoremap <A-u> :GundoToggle<CR>
+" let g:gundo_close_on_revert = 1
 " }}}
 "------------------------------------------------------------------------------
 "
@@ -782,8 +803,14 @@ let g:LatexBox_viewer = 'GDK_SCALE=1 zathura -x "nvim --servername '.v:servernam
 "------------------------------------------------------------------------------
 " Multiple Cursors {{{
 "------------------------------------------------------------------------------
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_quit_key            = '<Esc>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+
 let g:multi_cursor_exit_from_insert_mode=0
-let g:multi_cursor_normal_maps={'d':1}
+let g:multi_cursor_normal_maps={'d':1, 'c':1}
 nnoremap <leader>mc :MultipleCursorsFind "
 vnoremap <leader>mc :MultipleCursorsFind "
 " }}}
@@ -813,12 +840,12 @@ let g:notes_suffix = '.txt'
 " Mini Yank {{{
 "------------------------------------------------------------------------------
 "
-if has('nvim')
-  map p <Plug>(miniyank-autoput)
-  map P <Plug>(miniyank-autoPut)
-
-  map <leader>u <Plug>(miniyank-cycle)
-endif
+" if has('nvim')
+"   map p <Plug>(miniyank-autoput)
+"   map P <Plug>(miniyank-autoPut)
+"
+"   map <leader>u <Plug>(miniyank-cycle)
+" endif
 "
 " }}}
 "------------------------------------------------------------------------------
@@ -850,13 +877,17 @@ let g:esearch = {
   \ 'backend':    'nvim',
   \ 'out':        'win',
   \ 'batch_size': 1000,
-  \ 'use':        ['visual', 'hlsearch', 'last'],
+  \ 'prefill':        ['hlsearch', 'current', 'cword', 'last'],
   \}
 
 " Start esearch prompt autofilled with one of g:esearch.use initial patterns
-call esearch#map('<leader>f', 'esearch')
+" call esearch#map('<leader>f', 'esearch')
 " Start esearch autofilled with a word under the cursor
-call esearch#map('<leader>r', 'esearch-word-under-cursor')
+" call esearch#map('<leader>r', 'esearch-word-under-cursor')
+
+nmap <leader>f <plug>(esearch)
+" map  <leader>r <plug>(operator-esearch-prefill)
+" map  <leader>f <plug>(operator-esearch-prefill)
 " }}}
 "------------------------------------------------------------------------------
 "
@@ -870,10 +901,10 @@ map + <Plug>(easymotion-prefix)
 nmap <leader><leader> <Plug>(easymotion-bd-w)
 " nmap <leader><leader> <Plug>(easymotion-jumptoanywhere)
 
-nmap <A-j> <Plug>(easymotion-j)
-nmap <A-k> <Plug>(easymotion-k)
-nmap <A-h> <Plug>(easymotion-linebackward)
-nmap <A-l> <Plug>(easymotion-lineforward)
+" nmap <A-j> <Plug>(easymotion-j)
+" nmap <A-k> <Plug>(easymotion-k)
+" nmap <A-h> <Plug>(easymotion-linebackward)
+" nmap <A-l> <Plug>(easymotion-lineforward)
 
 omap ; <Plug>(easymotion-lineanywhere)
 " omap ; <Plug>(easymotion-jumptoanywhere)
@@ -892,6 +923,9 @@ let g:grammarous#use_location_list=1
 " }}}
 "==============================================================================
 "
+
+highlight NonBreakingSpace ctermbg=red guibg=red
+match NonBreakingSpace / / " (CTRL+V x a 0)
 
 if ! empty(glob("$PROJECT_ROOT/.vimrc"))
     let project_vimrc = glob("$PROJECT_ROOT/.vimrc", 0, 1)[0]
