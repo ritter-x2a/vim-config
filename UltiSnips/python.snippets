@@ -1,0 +1,33 @@
+snippet start "Insert the boilerplate for  a new python script" b
+#!/usr/bin/env python3
+
+""" ${1:TODO document}
+"""
+
+import argparse
+
+# import os
+import sys
+
+# import_path = os.path.join(os.path.dirname(__file__), "..")
+# sys.path.append(import_path)
+
+
+def main():
+    argparser = argparse.ArgumentParser(description=__doc__)
+
+    argparser.add_argument('-o', '--output', metavar="OUTFILE", default=None,
+        help='the output file')
+
+    argparser.add_argument('input', metavar="INFILE",
+        help='the input file')
+
+    args = argparser.parse_args()
+
+    ${0:# TODO write this}
+
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
+endsnippet
