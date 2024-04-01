@@ -115,7 +115,7 @@ set list                        " show tabs and trailing spaces
 set mouse=a                     " enable the use of the mouse
 set nolinebreak                 " wrap at specified characters
 set number                      " show line numbers
-set popt=left:8pc,right:3pc     " print options
+" set popt=left:8pc,right:3pc     " print options
 set ruler                       " show the cursor position all the time
 set scrolloff=4                 " always keep 7 lines above and below cursor
 set sidescroll=1                " horizontal scrolldistance
@@ -266,8 +266,8 @@ highlight User3 term=reverse cterm=reverse gui=reverse guifg=#657b83 guibg=#6c6c
 " statusline
 set statusline=%2*%{StatuslineMode()}%*
 set statusline+=%{g:statusline_sep_left}\ "
-set statusline+=%3*%{fugitive#head()}%*
-set statusline+=%{ConditionalSep(function('fugitive#head'),1)}
+set statusline+=%3*%{FugitiveStatusline()}%*
+set statusline+=%{ConditionalSep(function('FugitiveStatusline'),1)}
 set statusline+=%<
 set statusline+=%{StatuslineFileName()}"
 set statusline+=%{ConditionalSep(function('StatuslineFileName'),1)}
