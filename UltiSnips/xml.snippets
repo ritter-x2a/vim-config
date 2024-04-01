@@ -1,0 +1,59 @@
+snippet ptxterm "pretext term and idx" A
+<term>${1}</term><idx>$1</idx>
+endsnippet
+
+snippet ptxcode "pretext code" A
+<c>${1}</c>
+endsnippet
+
+snippet ptxmath "pretext math" A
+<m>${1}</m>
+endsnippet
+
+snippet ptxaside "pretext aside" A
+<aside>
+	<p>
+		${1}
+	</p>
+</aside>
+endsnippet
+
+snippet ptxpara "pretext paragraph" A
+<p>
+	${1}
+</p>
+endsnippet
+
+snippet ptxxref "pretext xref" A
+<xref ref="${1}"/>
+endsnippet
+
+snippet ptxtag "pretext tag" A
+<${1}>${2}</${1/([\w:._-]+).*/\$1/}>
+endsnippet
+
+snippet ptxtagml "pretext tag multiline" A
+<${1}>
+	${2}
+</${1/([\w:._-]+).*/\$1/}>
+endsnippet
+
+
+snippet ptxlisting "pretext listing" b
+<listing xml:id="${1:ID}">
+	<caption>
+		${2:CAPTION}
+	</caption>
+	<program language="java">
+		<input><xi:include href="listings/${3:FILENAME}" parse="text"/></input>
+	</program>
+</listing>
+endsnippet
+
+snippet ptxprg "pretext program" b
+<program language="java">
+	<input>
+		${1}
+	</input>
+</program>
+endsnippet
