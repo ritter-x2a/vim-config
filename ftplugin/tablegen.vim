@@ -1,5 +1,5 @@
 " Vim filetype plugin file
-" Language: LLVM Assembly
+" Language: LLVM TableGen
 " Maintainer: The LLVM team, http://llvm.org/
 
 if exists("b:did_ftplugin")
@@ -7,6 +7,6 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
+setlocal matchpairs+=<:>
 setlocal softtabstop=2 shiftwidth=2
 setlocal expandtab
-setlocal comments+=:;
